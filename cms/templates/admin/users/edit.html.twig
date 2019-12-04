@@ -1,0 +1,19 @@
+{% extends 'admin.html.twig' %}
+{% form_theme form 'forms/forms.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    <section class="formContainer">
+        {{ form_start(form) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.password) }}
+            {{ form_row(form.first_name) }}
+            {{ form_row(form.last_name) }}
+            {{ form_row(form.roles) }}
+            {{ form_row(form.Cost) }}
+            {{ form_row(form.save) }}
+        {{ form_end(form) }}
+    </section>
+{% endblock %}

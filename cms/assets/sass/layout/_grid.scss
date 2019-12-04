@@ -1,0 +1,30 @@
+.container {
+  width: 80%;
+  margin: 0 auto;
+
+  &.-fluid {
+    width: 100%;
+  }
+
+  &.-admin {
+    @include h-100();
+  }
+}
+
+.row {
+  width: 100%;
+  display: flex;
+}
+
+$columns: 12;
+
+@for $cols from 1 through $columns {
+  $size: (100% / 12) * $cols;
+  .col-#{$cols} {
+    flex-basis: $size;
+  }
+
+  .offset-#{$cols} {
+    margin-left: $size;
+  }
+}

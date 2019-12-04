@@ -1,0 +1,8 @@
+@mixin h-100 {
+  height: 100vh;
+}
+
+@mixin reset-link {
+  text-decoration: none;
+  color: inherit;
+}

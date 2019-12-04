@@ -1,0 +1,12 @@
+html, body {
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+}
+
+@for $size from 1 through 6 {
+  h#{$size} {
+    font-family: $header-font-family;
+    font-size: $header-font-size - ($size * $size) / 2;
+    font-weight: $header-font-weight;
+  }
+}

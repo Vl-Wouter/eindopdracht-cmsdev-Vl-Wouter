@@ -1,0 +1,27 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Hello TaskController!{% endblock %}
+
+{% block content %}
+    <h1>{{ tasks|length }} {%  if not tasks|length == 1 %}Taken {% else %} Taak{% endif %}</h1>
+    <h3>Niet voltooid</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Klant</th>
+            <th>Technieker</th>
+            <th>Datum</th>
+            <th>Duur</th>
+            <th>Prijs</th>
+            <th>Acties</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for task in tasks %}
+            <tr>
+            </tr>
+        </tbody>
+    </table>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <main class="container -fluid -admin">
+        <section class="row">
+            <nav class="nav -admin col-1">
+                <a href="{{ path('admin_index') }}" class="nav__brand">
+                    <h1>CMS</h1>
+                </a>
+                <section class="nav__link">
+                    <a href="{{ path('user_index') }}" class="nav__link__item" id="users">
+                        <span class="iconify" data-icon="bx:bxs-user" data-inline="false"></span>
+                        <p>Gebruikers</p>
+                    </a>
+                    <a href="{{ path('tasks_index') }}" class="nav__link__item" id="tasks">
+                        <span class="iconify" data-icon="bx:bx-task" data-inline="false"></span>
+                        <p>Taken</p>
+                    </a>
+                </section>
+            </nav>
+            <main class="content col-11">
+                <main class="container">
+                    {% block content %}{% endblock %}
+                </main>
+            </main>
+        </section>
+    </main>
+    {% block javascripts %}
+        {{ parent() }}
+    {% endblock %}
+{% endblock %}
