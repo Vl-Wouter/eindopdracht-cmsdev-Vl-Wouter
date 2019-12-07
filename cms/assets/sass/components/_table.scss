@@ -1,9 +1,67 @@
 .table {
   width: 100%;
+  margin: 32px 0;
+  border-radius: 8px;
+  overflow: hidden;
+  @include shadow();
+
   th {
-    padding: 16px 0;
+    padding: 32px 8px;
+    background: cms-color-level('background');
+
+    &:first-of-type {
+      padding-left: 16px;
+    }
+
+    &:last-of-type {
+      padding-right: 16px;
+    }
   }
+  tbody tr:hover {
+    background: cms-color-level('primary', 9.5);
+  }
+
+  tbody tr td {
+    &:first-of-type {
+      padding-left: 16px;
+    }
+
+    &:last-of-type {
+      padding-right: 16px;
+    }
+  }
+
   td {
-    padding: 8px 0;
+    padding: 16px 8px;
+    border-top: 1px solid cms-color-level('background', -0.5);
+    border-bottom: 1px solid cms-color-level('background', -0.5);
+
+    &.number {
+      text-align: right;
+    }
+
+    &.rates {
+      text-align: center;
+    }
+
+    &.actions {
+      color: cms-color-level('primary', 4);
+      a {
+        color: inherit;
+        text-decoration: none;
+
+        &.danger {
+          color: cms-color-level('danger', 3);
+
+          &:hover {
+            color: cms-color-level('danger');
+          }
+        }
+
+        &:hover {
+          color: cms-color-level('primary', 2);
+        }
+      }
+    }
   }
 }

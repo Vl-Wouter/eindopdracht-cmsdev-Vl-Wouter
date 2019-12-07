@@ -3,34 +3,34 @@
 {% block title %}Gebruikers{% endblock %}
 
 {% block content %}
-    <h1>{{ users|length }} gebruiker{%  if users|length > 1 or users|length == 0 %}s{% endif %}</h1>
-    <section class="user__actions">
-        <a href="{{ path('user_new') }}" class="btn -primary">Gebruiker toevoegen</a>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Naam</th>
-                <th>Gebruikersnaam</th>
-                <th>Email</th>
-                <th>Rollen</th>
-                <th>Tarief</th>
-                <th>Acties</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.firstName }} {{ user.lastName }}</td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.roles[0] }}</td>
-                <td>€ {{ user.cost }}</td>
-                <td><a href="{{ path('user_edit', { 'user': user.id }) }}">Bewerken</a> | <a href="{{ path('user_destroy', { 'user': user.id }) }}">Verwijder</a></td>
-            </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </section>
+    <div>
+        <h1>{{ users|length }} Gebruiker{%  if users|length > 1 or users|length == 0 %}s{% endif %}</h1>
+    </div>
+    <a href="{{ path('user_new') }}" class="btn -primary">Gebruiker toevoegen</a>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Naam</th>
+            <th>Gebruikersnaam</th>
+            <th>Email</th>
+            <th>Rollen</th>
+            <th>Tarief</th>
+            <th>Acties</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+        <tr>
+            <td class="number">{{ user.id }}</td>
+            <td>{{ user.firstName }} {{ user.lastName }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.roles[0][5:]|title }}</td>
+            <td class="rates">€ {{ user.cost }} | € {{ user.transport }}</td>
+            <td class="actions"><a href="{{ path('user_edit', { 'user': user.id }) }}">Bewerken</a> | <a href="{{ path('user_destroy', { 'user': user.id }) }}" class="danger" >Verwijder</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

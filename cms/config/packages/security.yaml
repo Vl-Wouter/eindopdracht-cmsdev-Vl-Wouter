@@ -7,7 +7,7 @@ security:
         ROLE_ADMIN: ROLE_USER
         ROLE_CUSTOMER: ROLE_USER
         ROLE_EMPLOYEE: ROLE_USER
-        ROLE_SUBCONTRACTOR: ROLE_USER
+        ROLE_SUBCONTRACTOR: ROLE_EMPLOYEE
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:

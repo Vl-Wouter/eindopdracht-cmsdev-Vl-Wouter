@@ -1,0 +1,15 @@
+.status {
+  font-size: 14px;
+  padding: 8px;
+  border-radius: 8px;
+
+  &.-warning {
+    background: cms-color-level('warning', 6);
+    color: cms-color-level('warning', -6);
+  }
+
+  &.-success {
+    background: cms-color-level('success', 6);
+    color: cms-color-level('success', -6);
+  }
+}

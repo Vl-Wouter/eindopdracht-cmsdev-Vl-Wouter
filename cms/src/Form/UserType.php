@@ -56,7 +56,16 @@ class UserType extends AbstractType
                 'label' => 'Tarief',
                 'required' => true,
             ])
-            ->add('save', SubmitType::class)
+            ->add('transport', NumberType::class, [
+                'label' => 'Transportkost',
+                'required' => true,
+                'empty_data' => 0,
+            ])
+            ->add('save', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn -primary',
+                ]
+            ])
         ;
     }
 

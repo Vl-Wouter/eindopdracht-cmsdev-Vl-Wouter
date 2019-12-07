@@ -4,8 +4,8 @@
 
   &.-admin {
     height: 100vh;
-    background: #232323;
-    color: #fefefe;
+    background: cms-color-level('background', -0.6);
+    color: cms-color-level('foreground');
     flex-flow: column nowrap;
     align-items: center;
     padding: 32px 0;
@@ -14,7 +14,15 @@
   &__brand {
     height: 56px;
     line-height: 56px;
+    display: flex;
+    align-items: center;
     @include reset-link();
+    color: cms-color-level('primary');
+
+
+    h1 {
+      color: inherit;
+    }
   }
 
   &__link {
@@ -36,7 +44,11 @@
       }
 
       &.-active {
-        background: lighten(#232323, 10%);
+        color: cms-color-level('primary', 2);
+
+        &:hover {
+          background: cms-color-level('primary', 8);
+        }
       }
 
       .iconify {
@@ -45,6 +57,10 @@
 
       p {
         font-size: 12px;
+      }
+
+      &:hover {
+        background: cms-color-level('primary', 8);
       }
     }
   }

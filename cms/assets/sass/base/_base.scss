@@ -1,6 +1,7 @@
 html, body {
   font-family: $base-font-family;
   font-size: $base-font-size;
+  box-sizing: border-box;
 }
 
 @for $size from 1 through 6 {
@@ -8,5 +9,7 @@ html, body {
     font-family: $header-font-family;
     font-size: $header-font-size - ($size * $size) / 2;
     font-weight: $header-font-weight;
+    line-height: 1 + ($size * $size) / 10;
+    margin: (1.5rem - ($size * $size) / 10) 0;
   }
 }
