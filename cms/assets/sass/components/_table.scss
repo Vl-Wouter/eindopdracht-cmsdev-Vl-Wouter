@@ -3,11 +3,13 @@
   margin: 32px 0;
   border-radius: 8px;
   overflow: hidden;
+  background: cms-color-level('background');
   @include shadow();
 
   th {
     padding: 32px 8px;
     background: cms-color-level('background');
+    font-size: 14px;
 
     &:first-of-type {
       padding-left: 16px;
@@ -18,7 +20,8 @@
     }
   }
   tbody tr:hover {
-    background: cms-color-level('primary', 9.5);
+    color: cms-color-level('primary', -6);
+    background: cms-color-level('primary', 9);
   }
 
   tbody tr td {

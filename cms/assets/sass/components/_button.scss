@@ -8,6 +8,16 @@
   position: relative;
   border: none;
   cursor: pointer;
+  font-family: $base-font-family;
+
+  &.-lg {
+    padding: 16px 24px;
+  }
+
+  .iconify {
+    font-size: inherit;
+    line-height: 100%;
+  }
 
   &.-primary {
     background-color: cms-color-level('primary');
@@ -15,7 +25,8 @@
     transition: all 150ms ease-in-out;
 
     &:hover {
-      background-color: cms-color-level('primary', 2);
+      background: cms-color-level('primary', 1);
+      box-shadow: 0 5px 10px #00000040;
       transition: all 150ms ease-in-out;
     }
   }

@@ -36,6 +36,43 @@ class TaskRepository extends ServiceEntityRepository
     }
     */
 
+    /**
+     * Find all tasks and order them by status
+     * @return mixed
+     */
+    public function findAndOrderByStatus() {
+        return $this->createQueryBuilder( 't')
+            ->orderBy('t.status', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Return all tasks with a certain client
+     * @param $id
+     * @return mixed
+     */
+    public function findByClient($id) {
+        return $this->createQueryBuilder('t')
+            ->where('t.client = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Return all tasks with a certain employee
+     * @param $id
+     * @return mixed
+     */
+    public function findByEmployee($id) {
+        return $this->createQueryBuilder('t')
+            ->where('t.employee = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
     /*
     public function findOneBySomeField($value): ?Task
     {

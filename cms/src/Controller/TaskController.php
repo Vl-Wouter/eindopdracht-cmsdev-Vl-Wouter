@@ -22,7 +22,7 @@ class TaskController extends AbstractController
      */
     public function index()
     {
-        $tasks = $this->getDoctrine()->getRepository(Task::class)->findAll();
+        $tasks = $this->getDoctrine()->getRepository(Task::class)->findAndOrderByStatus();
         return $this->render('admin/task/index.html.twig', [
             'tasks' => $tasks,
             'title' => 'Taken'

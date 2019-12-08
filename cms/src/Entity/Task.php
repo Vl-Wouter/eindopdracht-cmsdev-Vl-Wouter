@@ -71,7 +71,7 @@ class Task
     /**
      * @ORM\Column(type="boolean")
      */
-    private $status;
+    private $status = false;
 
     public function getId(): ?int
     {

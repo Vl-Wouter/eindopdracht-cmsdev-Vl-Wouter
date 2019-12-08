@@ -1,0 +1,33 @@
+.card {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-flow: column nowrap;
+  @include shadow();
+
+  &.-horizontal {
+    flex-flow: row nowrap;
+
+    .card__image {
+      padding: 16px 0 32px 16px;
+      color: cms-color-level('background');
+      position: relative;
+
+      .image__attribution {
+        font-size: 12px;
+        position: absolute;
+        right: 16px;
+        bottom: 16px;
+        color: cms-color-opacity('background', 3);
+      }
+    }
+
+    .card__content {
+      padding: 32px 16px 32px 16px;
+
+      p {
+        color: cms-color-level('foreground', 3);
+      }
+    }
+  }
+}

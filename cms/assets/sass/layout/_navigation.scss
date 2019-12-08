@@ -1,10 +1,13 @@
 .nav {
   width: 100%;
   display: flex;
+  font-family: $header-font-family;
 
   &.-admin {
     height: 100vh;
-    background: cms-color-level('background', -0.6);
+    position: fixed;
+    width: (100% / 12) * 2;
+    background: cms-color-level('primary', -1);
     color: cms-color-level('foreground');
     flex-flow: column nowrap;
     align-items: center;
@@ -17,7 +20,7 @@
     display: flex;
     align-items: center;
     @include reset-link();
-    color: cms-color-level('primary');
+    color: cms-color-level('background');
 
 
     h1 {
@@ -29,38 +32,33 @@
     margin: 16px 0;
     width: 100%;
 
+    &.-user {
+      margin-top: auto;
+    }
+
     &__item {
       @include reset-link();
-      text-align: center;
-      width: 100%;
-      padding: 16px 0;
-      display: block;
-      &:first-of-type {
-        margin-top: 0;
-      }
-
-      &:last-of-type {
-        margin-bottom: 0;
-      }
-
-      &.-active {
-        color: cms-color-level('primary', 2);
-
-        &:hover {
-          background: cms-color-level('primary', 8);
-        }
-      }
+      display: flex;
+      padding: 16px 0 16px 32px;
+      align-items: center;
+      color: cms-color-level('primary', 6);
+      transition: all 100ms ease-in-out;
 
       .iconify {
+        margin-right: 16px;
         font-size: 24px;
-      }
-
-      p {
-        font-size: 12px;
+        width: 30px;
       }
 
       &:hover {
-        background: cms-color-level('primary', 8);
+        color: cms-color-level('background', -.5);
+        transition: all 100ms ease-in-out;
+      }
+
+      &.-active {
+        background: cms-color-level('primary', 3);
+        color: cms-color-level('background');
+        transition: all 250ms ease-in-out;
       }
     }
   }

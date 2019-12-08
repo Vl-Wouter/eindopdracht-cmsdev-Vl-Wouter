@@ -3,8 +3,8 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-    <h1>{{ tasks|length }} {%  if not tasks|length == 1 %}Taken {% else %} Taak{% endif %}</h1>
-    <a href="{{ path('tasks_add') }}" class="btn -primary">Taak toevoegen</a>
+    <h1>{{ tasks|length }} {% if tasks|length > 1 or tasks|length == 0 %}Taken{% else %}Taak{% endif %}</h1>
+    <a href="{{ path('tasks_add') }}" class="btn -primary"><span class="iconify" data-icon="gridicons:add-outline" data-inline="true"></span> Toevoegen</a>
     <table class="table">
         <thead>
         <tr>

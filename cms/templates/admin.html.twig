@@ -3,22 +3,32 @@
 {% block body %}
     <main class="container -fluid -admin">
         <section class="row">
-            <nav class="nav -admin col-1">
+            <nav class="nav -admin col-2">
                 <a href="{{ path('admin_index') }}" class="nav__brand">
                     <h1>CMS</h1>
                 </a>
                 <section class="nav__link">
+                    <a href="{{ path('admin_index') }}" class="nav__link__item" id="overview">
+                        <span class="iconify" data-icon="ic:round-format-list-bulleted" data-inline="true"></span>
+                        <p>Overzicht</p>
+                    </a>
                     <a href="{{ path('user_index') }}" class="nav__link__item" id="users">
-                        <span class="iconify" data-icon="bx:bxs-user" data-inline="false"></span>
+                        <span class="iconify" data-icon="fa-solid:users" data-inline="true"></span>
                         <p>Gebruikers</p>
                     </a>
                     <a href="{{ path('tasks_index') }}" class="nav__link__item" id="tasks">
-                        <span class="iconify" data-icon="bx:bx-task" data-inline="false"></span>
+                        <span class="iconify" data-icon="jam:task-list-f" data-inline="true"></span>
                         <p>Taken</p>
                     </a>
                 </section>
+                <section class="nav__link -user">
+                    <a href="{{ path('app_logout') }}" class="nav__link__item">
+                        <span class="iconify" data-icon="ion:log-out" data-inline="true"></span>
+                        <p>Log Out</p>
+                    </a>
+                </section>
             </nav>
-            <main class="content col-11">
+            <main class="content col-10 offset-2">
                 <main class="container">
                     {% block content %}{% endblock %}
                 </main>

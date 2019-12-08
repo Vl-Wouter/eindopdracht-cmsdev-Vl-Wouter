@@ -1,6 +1,7 @@
 .formContainer {
   @include shadow();
   padding: 16px 16px 32px 32px;
+  background: cms-color-level('background');
 }
 
 form {
@@ -13,12 +14,73 @@ form {
     label {
       color: cms-color-level('foreground', 2);
       margin-bottom: 8px;
+      font-size: 12px;
     }
 
     input {
       border: 1px solid cms-color-opacity('foreground', 8);
       border-radius: 8px;
       padding: 8px;
+      font-family: $base-font-family;
+      font-size: $base-font-size;
+    }
+
+    select {
+      padding: 8px;
+      font-family: $base-font-family;
+      font-size: 14px;
+    }
+
+    &__roles {
+      label {
+        font-size: 14px;
+        margin-right: 16px;
+        margin-left: 4px;
+      }
+    }
+  }
+}
+
+.form__login {
+  border-collapse: collapse;
+  .form__group {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: baseline;
+    font-size: $base-font-size;
+    border: 1px solid cms-color-level('foreground', 9);
+    padding: 16px 8px;
+    margin: 16px 0;
+
+    &:focus-within {
+      border: 1px solid cms-color-level('primary', 4);
+    }
+
+    &:first-of-type {
+      border-radius: 8px 8px 0 0;
+      margin-bottom: 0;
+    }
+
+    &:last-of-type {
+      border-radius: 0 0 8px 8px;
+      margin-top: 0;
+    }
+
+    label {
+      flex-basis: 10%;
+      text-align: center;
+      margin: 0;
+      color: cms-color-level('foreground', 5);
+    }
+
+    input {
+      flex-basis: 90%;
+      border: none;
+      border-radius: 0;
+    }
+
+    button {
+      padding: 16px 8px;
     }
   }
 }
