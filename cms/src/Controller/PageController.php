@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Period;
 use App\Entity\Remark;
 use App\Repository\PeriodRepository;
-use App\Repository\TaskRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,7 +34,7 @@ class PageController extends AbstractController
      * @Route("", name="index")
      */
     public function index() {
-
+        return $this->render('page/index.html.twig');
     }
 
     /**
@@ -48,9 +47,14 @@ class PageController extends AbstractController
     public function show($client, $start, $end) {
         $period = $this->periodRepository->findOneByClient($client, $start, $end);
         $total = 0;
-        foreach ($period->getTasks() as $task) {
-            if ($task->getPrice()) {
-                $total += $task->getPrice();
+        if (!$period) {
+            return $this->redirectToRoute("page_not_found");
+        }
+        if ($period->getTasks()) {
+            foreach ($period->getTasks() as $task) {
+                if ($task->getPrice()) {
+                    $total += $task->getPrice();
+                }
             }
         }
         return $this->render('page/show.html.twig', [
@@ -126,6 +130,7 @@ class PageController extends AbstractController
         // Configure PDF
         $pdf_options = new Options();
         $pdf_options->set('defaultFont', 'Arial');
+        $pdf_title = $period->getClient()->getFirstName().$period->getClient()->getLastName().date('Ymd', time());
 
         $dompdf = new Dompdf($pdf_options);
 
@@ -138,10 +143,17 @@ class PageController extends AbstractController
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
 
-        $dompdf->stream("test.pdf", [
+        $dompdf->stream($pdf_title, [
             "Attachment" => true
         ]);
 
         return $this->redirectToRoute('page_show_period', ['client' => $client, 'start' => $start, 'end' => $end]);
+    }
+
+    /**
+     * @Route("404", name="not_found")
+     */
+    public function notFound() {
+        return $this->render('page/notFound.html.twig');
     }
 }

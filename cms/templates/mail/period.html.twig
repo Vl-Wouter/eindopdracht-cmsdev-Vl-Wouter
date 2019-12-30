@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        .header {
+            padding: 32px 16px;
+            background: #0267c1;
+            color: white;
+        }
+
+        .header img {
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Arte-Tech</h1>
+        <p>Uw adres voor outsourcing!</p>
+    </header>
+    <p>Beste {{ period.client }}</p>
+    <p>Hierbij laten we u weten dat u de recent afgeronde periode van {{ period.startDate | date('d-m-Y') }} tot {{ period.endDate | date('d-m-Y') }} kan bekijken via de volgende link:</p>
+    <a
+        href="{{ url }}"
+        target="_blank">
+        Bekijk de periode hier.
+    </a>
+</body>
+</html>

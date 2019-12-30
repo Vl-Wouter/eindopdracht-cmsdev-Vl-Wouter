@@ -1,6 +1,6 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}Hello PeriodController!{% endblock %}
+{% block title %}Alle periodes | Arte-Tech{% endblock %}
 
 {% block content %}
     <h1>Periodes</h1>
@@ -29,14 +29,21 @@
                             <span class="status -success">Bevestigd</span>
                         {% endif %}
                     {% else %}
-                        {% if period.startDate | date < "today" | date %}
+                        {% if period.startDate | date <= "today" | date %}
                             <span class="status -success">Actief</span>
                         {% else %}
                             <span class="status -warning">Gepland</span>
                         {% endif %}
                     {% endif %}
                 </td>
-                <td></td>
+                <td class="actions"><a
+                            href="{{ path('page_show_period', {
+                                client: period.client.username,
+                                start: period.startDate | date('Y-m-d'),
+                                end: period.endDate | date('Y-m-d')}) }}"
+                            target="_blank">
+                        Bekijken
+                    </a> | <a href="{{ path('mail_period', {period: period.id}) }}">Stuur e-mail</a></td>
             </tr>
         {% endfor %}
         </tbody>

@@ -5,11 +5,26 @@
 {% block body %}
 <main class="container period__container">
     <main class="row">
-        <section class="col-7 period">
+        <section class="col-8 offset-2 period">
             <h1>{{ period.startDate | date('d F') }} - {{ period.endDate | date('d F') }}</h1>
             <header class="period__client">
-                <p class="text-bold">{{ period.client }}</p>
-                <p class="text-light">{{ period.client.email }}</p>
+                <section class="client__data">
+                    <p class="text-bold">{{ period.client }}</p>
+                    <p class="text-light">{{ period.client.email }}</p>
+                </section>
+                <section class="client__actions">
+                    {% if not period.confirmed %}
+                        <a href="{{ path("page_confirm_period", {period: period.id}) }}" class="btn -success">Goedkeuren</a>
+                    {% endif %}
+                    <a
+                        href="{{ path('page_show_pdf', {
+                            client: period.client.username,
+                            start: period.startDate|date('Y-m-d'),
+                            end: period.endDate|date('Y-m-d')})}}"
+                        class="text-primary">
+                        PDF Maken
+                    </a>
+                </section>
             </header>
             <main class="period__task">
                 <table class="table">
@@ -58,21 +73,21 @@
                 </section>
             {% endif %}
         </section>
-        <section class="col-4 actions">
-            <main class="actions__card">
-                <h2>Acties</h2>
-                <p>{% if not period.confirmed %}<a href="{{ path("page_confirm_period", {period: period.id}) }}" class="btn -success">Goedkeuren</a>&nbsp;{% endif %}<a href="{{ path('page_show_pdf', {client: period.client.username, start: period.startDate|date('Y-m-d'), end: period.endDate|date('Y-m-d')})}}" class="btn -text-background">PDF Maken</a></p>
-                <p>Opmerking toevoegen</p>
-                <form action="{{ path("page_add_remark", {period: period.id}) }}" class="form">
-                    <div class="form__group">
-                        <textarea name="remark" id="remark" cols="30" rows="4"></textarea>
-                    </div>
-                    <div class="form__group">
-                        <button class="btn -background">Opmerking toevoegen</button>
-                    </div>
-                </form>
-            </main>
-        </section>
+{#        <section class="col-4 actions">#}
+{#            <main class="actions__card">#}
+{#                <h2>Acties</h2>#}
+{#                <p>{% if not period.confirmed %}<a href="{{ path("page_confirm_period", {period: period.id}) }}" class="btn -success">Goedkeuren</a>&nbsp;{% endif %}<a href="{{ path('page_show_pdf', {client: period.client.username, start: period.startDate|date('Y-m-d'), end: period.endDate|date('Y-m-d')})}}" class="btn -text-background">PDF Maken</a></p>#}
+{#                <p>Opmerking toevoegen</p>#}
+{#                <form action="{{ path("page_add_remark", {period: period.id}) }}" class="form">#}
+{#                    <div class="form__group">#}
+{#                        <textarea name="remark" id="remark" cols="30" rows="4"></textarea>#}
+{#                    </div>#}
+{#                    <div class="form__group">#}
+{#                        <button class="btn -background">Opmerking toevoegen</button>#}
+{#                    </div>#}
+{#                </form>#}
+{#            </main>#}
+{#        </section>#}
     </main>
 </main>
 {% endblock %}
