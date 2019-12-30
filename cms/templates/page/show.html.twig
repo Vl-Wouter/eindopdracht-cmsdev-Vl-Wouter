@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ period.startDate | date('d F') }} - {{ period.endDate | date('d F Y') }} | {{ period.client }}{% endblock %}
+
+{% block body %}
+<main class="container period__container">
+    <main class="row">
+        <section class="col-7 period">
+            <h1>{{ period.startDate | date('d F') }} - {{ period.endDate | date('d F') }}</h1>
+            <header class="period__client">
+                <p class="text-bold">{{ period.client }}</p>
+                <p class="text-light">{{ period.client.email }}</p>
+            </header>
+            <main class="period__task">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Datum</th>
+                            <th>Technieker</th>
+                            <th>Tijd</th>
+                            <th>Prijs</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for task in period.tasks %}
+                        <tr>
+                            <td>{{ task.date | date('d/m/Y') }}</td>
+                            <td>{{ task.employee }}</td>
+                            <td>{% if task.beginTime %}{{ task.beginTime | date("H:i") }} - {{ task.endTime | date("H:i") }}{% else %}Geannuleerd{% endif %}</td>
+                            <td class="number">{% if task.Price %}{{ task.Price | format_currency('EUR') }}{% else %}{{ 0 | format_currency('EUR') }}{% endif %}</td>
+                        </tr>
+                    {% endfor %}
+                        <tr class="total">
+                            <td></td>
+                            <td></td>
+                            <td class="bold">Totaal</td>
+                            <td class="number bold">{{ total | format_currency('EUR') }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </main>
+            {% if period.remarks and period.remarks | length > 0 %}
+            <section class="period__remarks">
+                <h2>Opmerkingen</h2>
+                <section class="remarks">
+                    {% for remark in period.remarks %}
+                        <section class="remark">
+                            <p>{{ remark.content }}</p>
+                            <p class="text-light">{{ remark.created | date('d-m-Y H:i:s') }}</p>
+                        </section>
+                    {% endfor %}
+                </section>
+
+            </section>
+            {% else %}
+                <section class="period__remarks">
+                    <p class="text-light">Geen opmerkingen</p>
+                </section>
+            {% endif %}
+        </section>
+        <section class="col-4 actions">
+            <main class="actions__card">
+                <h2>Acties</h2>
+                <p>{% if not period.confirmed %}<a href="{{ path("page_confirm_period", {period: period.id}) }}" class="btn -success">Goedkeuren</a>&nbsp;{% endif %}<a href="{{ path('page_show_pdf', {client: period.client.username, start: period.startDate|date('Y-m-d'), end: period.endDate|date('Y-m-d')})}}" class="btn -text-background">PDF Maken</a></p>
+                <p>Opmerking toevoegen</p>
+                <form action="{{ path("page_add_remark", {period: period.id}) }}" class="form">
+                    <div class="form__group">
+                        <textarea name="remark" id="remark" cols="30" rows="4"></textarea>
+                    </div>
+                    <div class="form__group">
+                        <button class="btn -background">Opmerking toevoegen</button>
+                    </div>
+                </form>
+            </main>
+        </section>
+    </main>
+</main>
+{% endblock %}

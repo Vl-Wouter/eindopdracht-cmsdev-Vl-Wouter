@@ -1,0 +1,32 @@
+.form__group {
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  margin: 16px 0;
+
+  label {
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+
+  input,
+  textarea,
+  select {
+    font-family: $base-font-family;
+    border-radius: 8px;
+    border: 1px solid hsl(203, 94%, 79%);
+    padding: 16px 16px;
+    box-sizing: border-box;
+    background: #fff;
+    width: 100%;
+    font-size: 12px;
+
+    &:focus {
+      border-color: #0587dd;
+    }
+
+    &.-error {
+      box-shadow: 0 0 3px red;
+    }
+  }
+}

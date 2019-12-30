@@ -1,24 +1,43 @@
 {% extends "base.html.twig" %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+{% endblock %}
+
 {% block body %}
     <main class="container -fluid -admin">
         <section class="row">
-            <nav class="nav -admin col-1">
+            <nav class="nav -admin col-2">
                 <a href="{{ path('admin_index') }}" class="nav__brand">
-                    <h1>CMS</h1>
+                    <img src="{{ asset('images/Arte-tech-white.svg') }}" alt="CMS">
                 </a>
                 <section class="nav__link">
+                    <a href="{{ path('admin_index') }}" class="nav__link__item" id="overview">
+                        <span class="iconify" data-icon="ic:round-format-list-bulleted" data-inline="true"></span>
+                        <p>Overzicht</p>
+                    </a>
                     <a href="{{ path('user_index') }}" class="nav__link__item" id="users">
-                        <span class="iconify" data-icon="bx:bxs-user" data-inline="false"></span>
+                        <span class="iconify" data-icon="fa-solid:users" data-inline="true"></span>
                         <p>Gebruikers</p>
                     </a>
                     <a href="{{ path('tasks_index') }}" class="nav__link__item" id="tasks">
-                        <span class="iconify" data-icon="bx:bx-task" data-inline="false"></span>
+                        <span class="iconify" data-icon="jam:task-list-f" data-inline="true"></span>
                         <p>Taken</p>
+                    </a>
+                    <a href="{{ path('period_index') }}" class="nav__link__item" id="period">
+                        <span class="iconify" data-icon="vaadin:time-forward" data-inline="true"></span>
+                        <p>Periodes</p>
+                    </a>
+                </section>
+                <section class="nav__link -user">
+                    <a href="{{ path('app_logout') }}" class="nav__link__item">
+                        <span class="iconify" data-icon="ion:log-out" data-inline="true"></span>
+                        <p>Log Out</p>
                     </a>
                 </section>
             </nav>
-            <main class="content col-11">
+            <main class="content col-10 offset-2">
                 <main class="container">
                     {% block content %}{% endblock %}
                 </main>
@@ -27,5 +46,6 @@
     </main>
     {% block javascripts %}
         {{ parent() }}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
     {% endblock %}
 {% endblock %}

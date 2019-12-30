@@ -1,0 +1,25 @@
+// Color functions
+@function cms-color($key: 'primary') {
+  @return map-get($colors, $key);
+}
+
+$color-interval: 10%;
+
+@function cms-color-level($color-name: 'primary', $level: 0) {
+  $color: cms-color($color-name);
+  $color-base: if($level < 0, black, white);
+
+  @return mix($color-base, $color, abs($level) * $color-interval);
+}
+
+@function cms-color-opacity($color-name: 'primary', $level: 0) {
+  $color: cms-color($color-name);
+
+  @return transparentize($color, $level / 10);
+}
+
+@function cms-foreground-color($color-name, $threshold: .65) {
+  $color: cms-color($color-name);
+
+  @return if(lightness($color) >= $threshold, cms-color('foreground'), cms-color('background'));
+}

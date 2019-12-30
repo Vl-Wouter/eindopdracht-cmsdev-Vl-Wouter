@@ -1,0 +1,89 @@
+.period {
+  margin-top: 64px;
+  box-shadow: 0 5px 10px #00000020;
+  padding: 0 32px;
+  text-align: center;
+  background: #fff;
+
+  &__client {
+    text-align: left;
+    margin: 32px 0;
+
+    .text-bold {
+      font-weight: 700;
+    }
+
+    .text-light {
+      color: cms-color-level("foreground", 3);
+    }
+  }
+
+  &__task {
+    width: 100%;
+
+    &__detail {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+
+      p {
+        text-align: left;
+        flex: 0 0 25%;
+
+        &.date {
+          color: cms-color-level("foreground", 2);
+        }
+
+        &.number {
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  &__remarks {
+    .remarks {
+      box-shadow: 0 5px 10px #00000020;
+    }
+    .remark {
+      width: 100%;
+      text-align: left;
+      padding: 16px 16px;
+      border-top: 1px solid #f0f0f0;
+      border-bottom: 1px solid #f0f0f0;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+
+      &:first-child {
+        border-top: none;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+      }
+
+      &:last-child {
+        border-bottom: none;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
+    }
+  }
+}
+
+.period__container .actions {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+
+  &__card {
+    background: cms-color-level();
+    width: 100%;
+    color: cms-color-level("background");
+    height: auto;
+    padding: 0 32px;
+
+    p {
+      margin: 16px 0;
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{% extends 'admin.html.twig' %}
+{% form_theme form 'forms/forms.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    <section class="formContainer">
+        {{ form(form) }}
+    </section>
+{% endblock %}

@@ -1,0 +1,72 @@
+.btn {
+  @include reset-link();
+
+  padding: 8px 16px;
+  @include shadow();
+  border-radius: 8px;
+  box-sizing: border-box;
+  position: relative;
+  border: none;
+  cursor: pointer;
+  font-family: $base-font-family;
+
+  &.-lg {
+    padding: 16px 24px;
+  }
+
+  .iconify {
+    font-size: inherit;
+    line-height: 100%;
+  }
+
+  @each $color-name, $value in $colors {
+    &.-#{$color-name} {
+      background: cms-color-level($color-name);
+      //border: 1px solid cms-color-level($color-name);
+      @if($color-name == 'primary') {
+        color: cms-color-level('background');
+      } @else {
+        color: cms-foreground-color($color-name);
+      }
+      transition: all 100ms ease-in-out;
+
+      &:hover {
+        background: cms-color-level($color-name, 1);
+        //border: 1px solid cms-color-level($color-name, 1);
+        box-shadow: 0 5px 10px #00000040;
+        transition: all 100ms ease-in-out;
+      }
+    }
+
+    &.-text-#{$color-name} {
+      //border: 1px solid cms-color-level($color-name);
+      color: cms-color-level($color-name);
+      transition: all 200ms ease-in-out;
+      box-shadow: none;
+
+      &:hover {
+        @if($color-name == 'primary') {
+          color: cms-color-level('background');
+        } @else {
+          color: cms-foreground-color($color-name);
+        }
+        background: cms-color-level($color-name, 1);
+        //border: 1px solid cms-color-level($color-name, 1);
+        box-shadow: 0 5px 10px #00000040;
+        transition: all 200ms ease-in-out;
+      }
+    }
+  }
+
+  //&.-primary {
+  //  background-color: cms-color-level('primary');
+  //  color: cms-color-level('background');
+  //  transition: all 150ms ease-in-out;
+  //
+  //  &:hover {
+  //    background: cms-color-level('primary', 1);
+  //    box-shadow: 0 5px 10px #00000040;
+  //    transition: all 150ms ease-in-out;
+  //  }
+  //}
+}

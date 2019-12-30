@@ -1,0 +1,12 @@
+.text-light {
+  font-size: 14px;
+  color: cms-color-level("foreground", 3);
+}
+
+.text-success {
+  color: cms-color-level("success", -3);
+}
+
+.text-danger {
+  color: cms-color-level("danger", 3);
+}

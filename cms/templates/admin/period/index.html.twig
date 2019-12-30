@@ -1,0 +1,44 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Hello PeriodController!{% endblock %}
+
+{% block content %}
+    <h1>Periodes</h1>
+    <a href="{{ path('period_new') }}" class="btn -primary"><span class="iconify" data-icon="ic:baseline-alarm-add" data-inline="true"></span> Start periode</a>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Klant</th>
+            <th>Duur</th>
+            <th>Status</th>
+            <th>Acties</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for period in periods %}
+            <tr>
+                <td>{{ period.id }}</td>
+                <td>{{ period.client }}</td>
+                <td>{{ period.startDate|date('d/m/Y') }} - {{ period.endDate|date('d/m/Y') }}</td>
+                <td>
+                    {% if period.endDate | date < "today" | date %}
+                        {% if not period.confirmed %}
+                            <span class="status -warning">Wachten op bevestiging</span>
+                        {% else %}
+                            <span class="status -success">Bevestigd</span>
+                        {% endif %}
+                    {% else %}
+                        {% if period.startDate | date < "today" | date %}
+                            <span class="status -success">Actief</span>
+                        {% else %}
+                            <span class="status -warning">Gepland</span>
+                        {% endif %}
+                    {% endif %}
+                </td>
+                <td></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,10 +1,14 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}Hello TaskController!{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-    <h1>{{ tasks|length }} {%  if not tasks|length == 1 %}Taken {% else %} Taak{% endif %}</h1>
-    <h3>Niet voltooid</h3>
+    <h1>{{ tasks|length }} {% if tasks|length > 1 or tasks|length == 0 %}Taken{% else %}Taak{% endif %}</h1>
+    {% if alert %}
+    <span class="alert -{{ alert.type }}"><span class="iconify" data-icon="{{ alert.icon }}" data-inline="true"></span>&nbsp;{{ alert.message }}</span>
+    {% else %}
+    <a href="{{ path('tasks_add') }}" class="btn -primary"><span class="iconify" data-icon="gridicons:add-outline" data-inline="true"></span> Toevoegen</a>
+    {% endif %}
     <table class="table">
         <thead>
         <tr>
@@ -12,16 +16,38 @@
             <th>Klant</th>
             <th>Technieker</th>
             <th>Datum</th>
+            <th>Status</th>
             <th>Duur</th>
             <th>Prijs</th>
-            <th>Acties</th>
         </tr>
         </thead>
         <tbody>
         {% for task in tasks %}
             <tr>
+                <td class="number">{{ task.id }}</td>
+                <td>{{ task.period.client }}</td>
+                <td>{{ task.employee }}</td>
+                <td>{{ task.date|date("d/m/Y") }}</td>
+                <td>
+                    {% if task.date|date < "today"|date %}
+                        {% if task.endTime %}
+                            <span class="status -success">Voltooid</span>
+                        {% else %}
+                            <span class="status -danger">Geannuleerd</span>
+                        {% endif %}
+                    {% else %}
+                        {% if task.endTime %}
+                            <span class="status -success">Voltooid</span>
+                        {% else %}
+                            <span class="status -warning">Gepland</span>
+                        {% endif %}
+                    {% endif %}
+                </td>
+                <td>{% if task.endTime %}{{ task.beginTime | date("H:i", "Europe/Brussels")  }} - {{ task.endTime | date("H:i", "Europe/Brussels") }}{% else %}-{% endif %}</td>
+                <td class="number">{% if task.price %}{{ task.price | format_currency('EUR') }}{% else %}-{% endif %}</td>
+                <td class="actions number"><a href="" class="table__link"><span class="iconify" data-icon="bx:bxs-file-find" data-inline="true"></span></a></td>
             </tr>
+        {% endfor %}
         </tbody>
     </table>
-    {% endfor %}
 {% endblock %}

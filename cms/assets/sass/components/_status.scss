@@ -1,0 +1,23 @@
+.status {
+  font-size: 14px;
+  padding: 8px;
+  border-radius: 8px;
+  font-weight: 700;
+
+  @each $name, $value in $colors {
+    &.-#{$name} {
+      background: cms-color-level($name, 6);
+      color: cms-color-level($name, -6);
+    }
+  }
+
+  //&.-warning {
+  //  background: cms-color-level('warning', 6);
+  //  color: cms-color-level('warning', -6);
+  //}
+  //
+  //&.-success {
+  //  background: cms-color-level('success', 6);
+  //  color: cms-color-level('success', -6);
+  //}
+}

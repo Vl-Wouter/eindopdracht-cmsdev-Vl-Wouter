@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -52,11 +53,23 @@ class UserType extends AbstractType
                     'class' => 'form__group__roles'
                 ]
             ])
-            ->add('Cost', NumberType::class, [
+            ->add('Cost', MoneyType::class, [
                 'label' => 'Tarief',
                 'required' => true,
+                'empty_data' => 0,
+                'currency' => false,
             ])
-            ->add('save', SubmitType::class)
+            ->add('transport', MoneyType::class, [
+                'label' => 'Transportkost',
+                'required' => true,
+                'currency' => false,
+                'empty_data' => 0,
+            ])
+            ->add('save', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn -primary',
+                ]
+            ])
         ;
     }
 

@@ -1,0 +1,29 @@
+// Color functions
+@function app-color($key: "primary") {
+  @return map-get($colors, $key);
+}
+
+$color-interval: 10%;
+
+@function app-color-level($color-name: "primary", $level: 0) {
+  $color: app-color($color-name);
+  $color-base: if($level < 0, black, white);
+
+  @return mix($color-base, $color, abs($level) * $color-interval);
+}
+
+@function app-color-opacity($color-name: "primary", $level: 0) {
+  $color: app-color($color-name);
+
+  @return transparentize($color, $level / $color-interval);
+}
+
+@function app-foreground-color($color-name: "primary", $threshold: 0.65) {
+  $color: app-color($color-name);
+  @return if
+    (
+      lightness($color) >= $threshold,
+      app-color("foreground"),
+      app-color("background")
+    );
+}

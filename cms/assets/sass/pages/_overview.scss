@@ -1,0 +1,38 @@
+.-overview {
+  .card {
+    padding: 8px 16px;
+    margin: 16px 1%;
+    border-radius: 8px;
+    background: #fff;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &__comparison {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    &__value {
+      font-weight: 700;
+      font-size: 20px;
+      margin-top: 8px;
+    }
+
+    &#chartCard {
+      p {
+        margin-top: 8px;
+        margin-bottom: 16px;
+      }
+      max-height: 300px;
+      padding-bottom: 40px;
+    }
+  }
+}

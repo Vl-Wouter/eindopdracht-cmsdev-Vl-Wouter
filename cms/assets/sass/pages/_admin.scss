@@ -1,3 +1,9 @@
 .content {
-  margin-top: 32px;
+  padding-top: 32px;
+  background: cms-color-level('primary', 9.6);
+  min-height: 100vh;
+}
+
+.user__actions {
+  box-sizing: content-box;
 }
