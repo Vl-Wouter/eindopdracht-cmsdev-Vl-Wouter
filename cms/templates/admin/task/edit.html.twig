@@ -6,9 +6,6 @@
 {% block content %}
     <h1>{{ title }}</h1>
     <section class="formContainer">
-        {{ form_start(form) }}
-            {{ form_row(form.date) }}
-            {{ form_row(form.client) }}
-        {{ form_end(form) }}
+        {{ form(form) }}
     </section>
 {% endblock %}

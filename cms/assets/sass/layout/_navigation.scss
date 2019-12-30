@@ -22,6 +22,9 @@
     @include reset-link();
     color: cms-color-level('background');
 
+    img {
+      height: 100%;
+    }
 
     h1 {
       color: inherit;

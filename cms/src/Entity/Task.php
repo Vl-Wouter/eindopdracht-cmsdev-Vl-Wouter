@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TaskRepository")
@@ -13,93 +15,90 @@ class Task
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"api", "employee"})
      */
     private $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="tasks")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $client;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="tasks")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $employee;
 
     /**
      * @ORM\Column(type="date")
+     * @Groups({"api", "employee"})
      */
     private $date;
 
     /**
      * @ORM\Column(type="time", nullable=true)
+     * @Assert\Time()
+     * @Groups({"api", "employee"})
      */
     private $begin_time;
 
     /**
      * @ORM\Column(type="time", nullable=true)
+     * @Assert\Time()
+     * @Groups({"api", "employee"})
      */
     private $end_time;
 
     /**
      * @ORM\Column(type="float", nullable=true)
+     * @Groups("api")
      */
     private $break;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups({"api", "employee"})
      */
     private $activity;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups("api")
      */
     private $materials;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups("api")
      */
     private $transport_distance;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="float", nullable=true)
+     * @Groups("api")
      */
     private $price;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Groups({"api", "employee"})
      */
     private $status = false;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Period", inversedBy="tasks")
+     * @ORM\JoinColumn(nullable=false)
+     * @Groups({"api", "employee"})
+     */
+    private $period;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="tasks")
+     * @ORM\JoinColumn(nullable=false)
+     * @Groups("api")
+     */
+    private $employee;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     * @Groups({"api", "employee"})
+     */
+    private $Cost;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getClient(): ?User
-    {
-        return $this->client;
-    }
-
-    public function setClient(?User $client): self
-    {
-        $this->client = $client;
-
-        return $this;
-    }
-
-    public function getEmployee(): ?User
-    {
-        return $this->employee;
-    }
-
-    public function setEmployee(?User $employee): self
-    {
-        $this->employee = $employee;
-
-        return $this;
     }
 
     public function getDate(): ?\DateTimeInterface
@@ -206,6 +205,42 @@ class Task
     public function setStatus(bool $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getPeriod(): ?Period
+    {
+        return $this->period;
+    }
+
+    public function setPeriod(?Period $period): self
+    {
+        $this->period = $period;
+
+        return $this;
+    }
+
+    public function getEmployee(): ?User
+    {
+        return $this->employee;
+    }
+
+    public function setEmployee(?User $employee): self
+    {
+        $this->employee = $employee;
+
+        return $this;
+    }
+
+    public function getCost(): ?float
+    {
+        return $this->Cost;
+    }
+
+    public function setCost(?float $Cost): self
+    {
+        $this->Cost = $Cost;
 
         return $this;
     }

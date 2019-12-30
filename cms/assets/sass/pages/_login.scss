@@ -3,6 +3,10 @@
   width: 65%;
   .card {
     height: 60%;
+
+    &__logo {
+      max-height: 56px;
+    }
   }
 }
 

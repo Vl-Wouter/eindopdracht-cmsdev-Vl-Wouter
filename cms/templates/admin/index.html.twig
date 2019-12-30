@@ -3,13 +3,112 @@
 {% block title %}Hello AdminController!{% endblock %}
 
 {% block content %}
-    <div class="example-wrapper">
-        <h1>Hello {{ controller_name }}! ✅</h1>
+    <div class="-overview">
+        <h1>Arte-Tech CMS</h1>
+        <section class="row">
+            <section class="card col-4">
+                <div class="card__content">
+                    <p class="text-light">Opbrengst</p>
+                    <div class="card__comparison">
+                        <span class="card__value">{{ completed["last_period"]["price"] }} EUR</span>
+                        <span class="text-light {% if completed["difference"]["price"] %} text-success {% else %} text-danger {% endif %}">
+                            {% if completed["difference"]["price"] %}+{% endif %}{{ completed["difference"]["price"] }} EUR
+                        </span>
+                    </div>
+                </div>
+            </section>
+            <section class="card col-4">
+                <p class="text-light">Voltooide taken</p>
+                <div class="card__comparison"><span class="card__value">{{ completed["last_period"]["tasks"] }}</span>
+                    <span class="text-light {% if completed["difference"]["tasks"] > 0 %} text-success {% else %} text-danger {% endif %}">
+                        {% if completed["difference"]["tasks"] > 0 %}+{% endif %}{{ completed["difference"]["tasks"] }}
+                        {% if completed["difference"]["tasks"] == 1 %} taak {% else %} taken {% endif %}
+                    </span>
+                </div>
+            </section>
+            <section class="card col-4">
+                <p class="text-light">Top Werknemer</p>
+                <p class="card__value">{{ top_employees[0].first_name }} {{ top_employees[0].last_name }}</p>
+            </section>
+        </section>
+        <section class="row">
+            <main class="card col-12" id="chartCard">
+                <p class="text-light">Taken per dag</p>
+                <canvas id="taskChart" width="100%" height="300px" />
+            </main>
+        </section>
+        <section class="row">
+            <main class="col-12">
+                <h2>Recente opmerkingen</h2>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Periode</th>
+                        <th>Opmerking</th>
+                        <th>Datum</th>
+                        <th>Acties</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for remark in remarks %}
+                            <tr>
+                                <td>
+                                    <span>{{ remark.period.startDate | date('d-m-Y') }} — {{ remark.period.endDate | date('d-m-Y') }}</span>
+                                    <br>
+                                    <span class="text-light">{{ remark.period.client }}</span>
+                                </td>
+                                <td>{{ remark.content }}</td>
+                                <td>{{ remark.created | date('d-m-Y') }}</td>
+                                <td class="actions"><a href="{{ path('page_show_period', {client: remark.period.client.username, start: remark.period.startDate | date('Y-m-d'), end: remark.period.endDate | date('Y-m-d')}) }}">Bekijken</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </main>
 
-        This friendly message is coming from:
-        <ul>
-            <li>Your controller at <code><a href="{{ '/Users/woutervlaeyen/artevelde/cmsdev/eindopdracht-cmsdev-Vl-Wouter/cms/src/Controller/AdminController.php'|file_link(0) }}">src/Controller/AdminController.php</a></code></li>
-            <li>Your template at <code><a href="{{ '/Users/woutervlaeyen/artevelde/cmsdev/eindopdracht-cmsdev-Vl-Wouter/cms/templates/admin/index.html.twig'|file_link(0) }}">templates/admin/index.html.twig</a></code></li>
-        </ul>
+        </section>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        const ctx = document.querySelector("#taskChart");
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [{% for index, label in chart["labels"] %} "{{ label | date("d M") }}" {% if index != (chart["labels"] | length - 1) %},{% endif %} {% endfor %}],
+                datasets: [{
+                   label: "Taken",
+                    data: [{% for data in chart["data"] %} {{ data }}, {% endfor %}],
+                    backgroundColor: '#0267c130',
+                    borderColor: '#0267c1',
+                    pointBackgroundColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            stepSize: 1,
+                            beginAtZero: true
+                        },
+                        gridLines: {
+                            display: false,
+                        }
+                    }],
+                },
+                elements: {
+                    line: {
+                        tension: 0.3,
+                    }
+                },
+                legend: {
+                    display: false,
+                }
+            }
+        })
+    </script>
 {% endblock %}

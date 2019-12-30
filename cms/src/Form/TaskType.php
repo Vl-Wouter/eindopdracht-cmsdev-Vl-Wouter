@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Period;
 use App\Entity\Task;
 use App\Entity\User;
 use Doctrine\ORM\EntityRepository;
@@ -17,17 +18,22 @@ class TaskType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date', DateType::class)
-            ->add('client', EntityType::class, [
-                'class' => User::class,
+            ->add('date', DateType::class, [
+                'data' => new \DateTime(),
+            ])
+            ->add('period', EntityType::class, [
+                'class' => Period::class,
                 'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('u')
-                        ->where("u.roles LIKE :roles")
-                        ->setParameter('roles', '%ROLE_CUSTOMER%');
+                    return $er->createQueryBuilder('p')
+                        ->where("p.start_date <= :today")
+                        ->andWhere("p.end_date >= :today")
+                        ->setParameter("today", new \DateTime());
                 },
-                'choice_label' => function ($user) {
-                    return $user->getFirstName() . ' ' . $user->getLastName();
-                }
+                'choice_label' => function ($period) {
+                    $client = $period->getClient();
+                    return $client->getFirstName(). ' '.$client->getLastName().': '.date_format($period->getStartDate(), 'd/m/Y').' - '.date_format($period->getEndDate(), 'd/m/Y');
+                },
+                'label' => 'Klant'
             ])
             ->add('employee', EntityType::class, [
                 'class' => User::class,

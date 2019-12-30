@@ -17,7 +17,7 @@ form {
       font-size: 12px;
     }
 
-    input {
+    input, textarea {
       border: 1px solid cms-color-opacity('foreground', 8);
       border-radius: 8px;
       padding: 8px;
@@ -32,10 +32,29 @@ form {
     }
 
     &__roles {
+      input {
+        display: none;
+
+        &:checked + label {
+          background: cms-color-level('primary', 2);
+          color: cms-color-level('background');
+          border: 1px solid cms-color-level('primary', 2);
+          transition: all 150ms ease-in-out;
+        }
+      }
       label {
         font-size: 14px;
         margin-right: 16px;
         margin-left: 4px;
+        border: 1px solid cms-color-opacity('foreground', 8);
+        padding: 8px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 150ms ease-in-out;
+
+        &:first-of-type {
+          margin-left: 0;
+        }
       }
     }
   }

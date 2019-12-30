@@ -2,6 +2,7 @@ html, body {
   font-family: $base-font-family;
   font-size: $base-font-size;
   box-sizing: border-box;
+  background: cms-color-level('primary', 9.6);
 }
 
 @for $size from 1 through 6 {
