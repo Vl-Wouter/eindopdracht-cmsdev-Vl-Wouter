@@ -24,6 +24,11 @@
     background: cms-color-level('primary', 9);
   }
 
+  tbody tr.total {
+    color: cms-color-level('primary', -6);
+    background: cms-color-level('primary', 9);
+  }
+
   tbody tr td {
     &:first-of-type {
       padding-left: 16px;
@@ -41,6 +46,10 @@
 
     &.number {
       text-align: right;
+    }
+
+    &.bold {
+      font-weight: 700;
     }
 
     &.rates {

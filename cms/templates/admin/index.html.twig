@@ -1,6 +1,6 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}Hello AdminController!{% endblock %}
+{% block title %}Arte-Tech{% endblock %}
 
 {% block content %}
     <div class="-overview">
@@ -59,7 +59,16 @@
                                 </td>
                                 <td>{{ remark.content }}</td>
                                 <td>{{ remark.created | date('d-m-Y') }}</td>
-                                <td class="actions"><a href="{{ path('page_show_period', {client: remark.period.client.username, start: remark.period.startDate | date('Y-m-d'), end: remark.period.endDate | date('Y-m-d')}) }}">Bekijken</a></td>
+                                <td class="actions">
+                                    <a
+                                        href="{{ path('page_show_period', {
+                                            client: remark.period.client.username,
+                                            start: remark.period.startDate | date('Y-m-d'),
+                                            end: remark.period.endDate | date('Y-m-d')}) }}"
+                                        target="_blank">
+                                        Bekijken
+                                    </a>
+                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>

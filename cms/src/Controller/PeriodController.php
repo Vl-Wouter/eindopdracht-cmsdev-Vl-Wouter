@@ -40,6 +40,7 @@ class PeriodController extends AbstractController
         $form->handleRequest($r);
         if($form->isSubmitted() && $form->isValid()) {
             $period = $form->getData();
+            $period->setConfirmed(false);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($period);

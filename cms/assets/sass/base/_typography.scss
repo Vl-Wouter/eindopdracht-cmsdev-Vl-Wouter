@@ -3,6 +3,14 @@
   color: cms-color-level("foreground", 3);
 }
 
+a {
+  text-decoration: none;
+}
+
+.text-primary {
+  color: cms-color-level();
+}
+
 .text-success {
   color: cms-color-level("success", -3);
 }
