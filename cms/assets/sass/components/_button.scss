@@ -23,7 +23,7 @@
     &.-#{$color-name} {
       background: cms-color-level($color-name);
       //border: 1px solid cms-color-level($color-name);
-      @if($color-name == 'primary') {
+      @if($color-name == 'primary' or $color-name == 'danger') {
         color: cms-color-level('background');
       } @else {
         color: cms-foreground-color($color-name);
@@ -43,9 +43,10 @@
       color: cms-color-level($color-name);
       transition: all 200ms ease-in-out;
       box-shadow: none;
+      background: none;
 
       &:hover {
-        @if($color-name == 'primary') {
+        @if($color-name == 'primary' or $color-name == 'danger') {
           color: cms-color-level('background');
         } @else {
           color: cms-foreground-color($color-name);

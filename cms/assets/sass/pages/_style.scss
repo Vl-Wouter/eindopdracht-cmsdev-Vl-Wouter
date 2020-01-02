@@ -1,0 +1,56 @@
+.style {
+  &__label {
+    font-size: 12px;
+    text-align: right;
+    color: cms-color-level("foreground", 4);
+    font-weight: 400;
+    font-family: $base-font-family;
+  }
+}
+.typo {
+  h1, h2, h3, h4, h5, h6 {
+    margin: 16px 0;
+  }
+}
+
+.colors {
+  h5 {
+    margin-top: 32px;
+  }
+  .set {
+    display: flex;
+    justify-content: space-between;
+    div {
+      width: 32px;
+      height: 32px;
+
+    }
+
+    @each $name, $color in $colors {
+      &.-#{$name} {
+        @for $shade from 0 through 9 {
+          :nth-child(#{$shade}) {
+            @if($name == "foreground") {
+              background: cms-color-level($name, $shade);
+            } @else if($name == "background") {
+              background: cms-color-level($name, $shade * -1);
+            } @else {
+              background: cms-color-level($name, ($shade - 5) * 2);
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+}
+
+.btns__links {
+  display: flex;
+  flex-flow: column nowrap;
+
+  * {
+    margin: 4px 0;
+  }
+}

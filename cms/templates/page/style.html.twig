@@ -1,0 +1,129 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Style Guide{% endblock %}
+
+{% block body %}
+<div class="container -top -bottom">
+    <h1>Style Guide Examples</h1>
+    <div class="row">
+        <div class="col-4">
+            <h2>Typography</h2>
+            <section class="typo">
+                <h1>H1 Header<span class="style__label">(Poppins 48px)</span></h1>
+                <h2>H2 Header <span class="style__label">(Poppins 39px)</span></h2>
+                <h3>H3 Header <span class="style__label">(Poppins 31px)</span></h3>
+                <h4>H4 Header <span class="style__label">(Poppins 28px)</span></h4>
+                <h5>H5 Header <span class="style__label">(Poppins 20px)</span></h5>
+                <h6>H6 Header <span class="style__label">(Muli 16px)</span></h6>
+                <p>Base font <span class="style__label">(Muli 16px)</span></p>
+            </section>
+        </div>
+        <div class="col-4 colors">
+            <h2>Colours</h2>
+            <h5>Primary</h5>
+            <section class="set -primary">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </section>
+            <h5>Danger</h5>
+            <section class="set -danger">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </section>
+            <h5>Warning</h5>
+            <section class="set -warning">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </section>
+            <h5>Success</h5>
+            <section class="set -success">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </section>
+            <h5>Foreground</h5>
+            <section class="set -foreground">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </section>
+            <h5>Background</h5>
+            <section class="set -background">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </section>
+        </div>
+        <div class="col-6 buttons">
+            <h2>Buttons, Links & Labels</h2>
+            <section class="btns__links">
+                <p>
+                    <button class="btn -primary">Primary Button</button>
+                    <button class="btn -text-primary">Primary Text Button</button>
+                </p>
+                <p>
+                    <button class="btn -danger">Danger Button</button>
+                    <button class="btn -text-danger">Danger Text Button</button>
+                </p>
+                <p>
+                    <button class="btn -warning">Warning Button</button>
+                    <button class="btn -text-warning">Warning Text Button</button>
+                </p>
+                <p>
+                    <button class="btn -success">Success Button</button>
+                    <button class="btn -text-success">Success Text Button</button>
+                </p>
+                <p class="actions">
+                    <a href="">Link</a>&nbsp;<a href="" class="danger">Danger Link</a>
+                </p>
+                <br>
+                <p>
+                    <span class="status -primary">Default Status</span>
+                    <span class="status -danger">Danger Status</span>
+                    <span class="status -warning">Warning Status</span>
+                    <span class="status -success">Success Status</span>
+                </p>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}

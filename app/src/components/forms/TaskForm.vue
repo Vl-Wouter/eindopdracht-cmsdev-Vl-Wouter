@@ -44,7 +44,7 @@
     </div>
     <text-area-field label labelText="Activiteiten" fieldName="activity" />
     <text-area-field label labelText="Materialen" fieldName="materials" />
-    <Button type="submit" colors="primary" label="Voltooien" />
+    <Button type="submit" colors="primary">Voltooien</Button>
   </form>
 </template>
 
