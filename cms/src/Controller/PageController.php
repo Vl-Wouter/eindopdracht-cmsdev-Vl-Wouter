@@ -156,4 +156,11 @@ class PageController extends AbstractController
     public function notFound() {
         return $this->render('page/notFound.html.twig');
     }
+
+    /**
+     * @Route("/style", name="style_guide")
+     */
+    public function style() {
+        return $this->render('page/style.html.twig');
+    }
 }

@@ -10,9 +10,9 @@
                 <div class="card__content">
                     <p class="text-light">Opbrengst</p>
                     <div class="card__comparison">
-                        <span class="card__value">{{ completed["last_period"]["price"] }} EUR</span>
-                        <span class="text-light {% if completed["difference"]["price"] %} text-success {% else %} text-danger {% endif %}">
-                            {% if completed["difference"]["price"] %}+{% endif %}{{ completed["difference"]["price"] }} EUR
+                        <span class="card__value">{% if completed["last_period"]["price"]  %}{{ completed["last_period"]["price"] | format_currency('EUR') }}{% else %}{{ 0 | format_currency('EUR') }}{% endif %}</span>
+                        <span class="text-light {% if completed["difference"]["price"] > 0 %} text-success {% else %} text-danger {% endif %}">
+                            {% if completed["difference"]["price"] > 0 %}+{% endif %}{{ completed["difference"]["price"] }} EUR
                         </span>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
                 <div class="card__comparison"><span class="card__value">{{ completed["last_period"]["tasks"] }}</span>
                     <span class="text-light {% if completed["difference"]["tasks"] > 0 %} text-success {% else %} text-danger {% endif %}">
                         {% if completed["difference"]["tasks"] > 0 %}+{% endif %}{{ completed["difference"]["tasks"] }}
-                        {% if completed["difference"]["tasks"] == 1 %} taak {% else %} taken {% endif %}
+                        {% if completed["difference"]["tasks"] | abs == 1 %} taak {% else %} taken {% endif %}
                     </span>
                 </div>
             </section>
