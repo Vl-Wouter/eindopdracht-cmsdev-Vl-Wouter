@@ -1,6 +1,6 @@
 <template>
   <main class="settings" v-if="currentUser">
-    <app-header>
+    <app-header class="header">
       <h2>Instellingen</h2>
       <h4>{{ currentUser.first_name + " " + currentUser.last_name }}</h4>
       <p>{{ currentUser.email }}</p>
@@ -61,6 +61,24 @@ h4 {
     margin: 8px 0;
     display: flex;
     justify-content: space-between;
+  }
+}
+
+@include desktop-up {
+  .settings {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    height: calc(100vh - 64px);
+
+    .header {
+      flex: 0 0 50%;
+    }
+
+    .forms {
+      flex: 0 0 50%;
+      box-sizing: border-box;
+    }
   }
 }
 </style>

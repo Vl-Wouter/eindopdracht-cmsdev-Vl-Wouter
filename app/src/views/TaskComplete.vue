@@ -3,7 +3,11 @@
     <router-link v-if="step == 1" to="/" class="backButton"
       ><font-awesome-icon icon="arrow-left" size="lg"
     /></router-link>
-    <button v-if="step != 1" @click.prevent="goBack" class="btn -empty">
+    <button
+      v-if="step != 1"
+      @click.prevent="goBack"
+      class="backButton btn -empty"
+    >
       <font-awesome-icon icon="arrow-left" size="lg" />
     </button>
     <h2 class="text-primary">Taak voltooien</h2>
@@ -61,6 +65,31 @@
       font-size: 16px;
       margin: 0;
       padding: 0;
+    }
+  }
+}
+
+@keyframes arrow-left {
+  0% {
+    transform: translateX(0);
+  }
+  10% {
+    transform: translateX(-50%);
+  }
+  20% {
+    transform: translateX(0);
+  }
+}
+
+@include desktop-up {
+  .container {
+    width: 65%;
+    margin: 0 auto;
+
+    .backButton {
+      animation-name: arrow-left;
+      animation-duration: 3s;
+      animation-iteration-count: infinite;
     }
   }
 }
