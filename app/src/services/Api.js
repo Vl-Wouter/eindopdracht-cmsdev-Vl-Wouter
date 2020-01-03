@@ -34,4 +34,14 @@ export default class Api {
     });
     return user;
   };
+
+  static updateUser = async (id, data, token) => {
+    const updatedUser = await axios.put(`${this.url}/user/${id}`, data, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    });
+    return updatedUser;
+  };
 }

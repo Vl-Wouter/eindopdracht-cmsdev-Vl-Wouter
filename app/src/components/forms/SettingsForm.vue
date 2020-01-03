@@ -6,8 +6,19 @@
       :message="error.message"
       :level="error.level"
     />
-    <text-field type="number" name="newCost" labelText="Nieuw tarief" />
-    <text-field />
+    <text-field
+      type="number"
+      name="newCost"
+      labelText="Nieuw tarief"
+      :value="values.cost"
+    />
+    <text-field
+      type="number"
+      name="newTransport"
+      labelText="Nieuwe transportkost"
+      step="0.01"
+      :value="values.transport"
+    />
     <v-button type="submit" colors="primary">
       <span v-if="loading"><font-awesome-icon icon="spinner" spin/></span>
       <span v-else>Versturen</span>

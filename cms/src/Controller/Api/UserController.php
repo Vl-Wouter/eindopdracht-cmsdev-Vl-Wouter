@@ -26,8 +26,18 @@ class UserController extends AbstractController
      * @Route("/api/user/{user}", name="api_user_update", methods={"PUT"})
      * @param User $user
      * @param Request $r
+     * @param SerializerInterface $serializer
+     * @return JsonResponse
      */
-    public function update(User $user, Request $r) {
+    public function update(User $user, Request $r, SerializerInterface $serializer) {
+        $data = json_decode($r->getContent());
+        $user->setCost($data->newCost);
+        $user->setTransport($data->newTransport);
 
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+
+        return JsonResponse::fromJsonString($serializer->serialize($user, 'json', ["groups" => "settings"]));
     }
 }

@@ -102,10 +102,22 @@ export default {
     },
     async submitUpdate() {
       this.loading = true;
-      const form = document.querySelector(form);
+      const form = document.querySelector("form");
       const json = FormSerializer.toJSON(form);
-      console.log(json);
-      this.loading = false;
+      try {
+        const { userToken, userId } = this.$store.state;
+        const { data } = await Api.updateUser(userId, json, userToken);
+        this.currentUser = data;
+      } catch (error) {
+        const errorData = error.response.data;
+        this.errors.unshift({
+          level: "error",
+          code: errorData.code,
+          message: errorData.message
+        });
+      } finally {
+        this.loading = false;
+      }
     }
   },
   created() {
