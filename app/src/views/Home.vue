@@ -45,6 +45,45 @@
     }
   }
 }
+
+@include desktop-up {
+  .home {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    height: calc(100vh - 64px);
+    width: 100%;
+
+    .header {
+      flex: 0 0 25%;
+    }
+
+    .overview__details {
+      flex-flow: column nowrap;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .tasks {
+      flex: 0 0 75%;
+      display: flex;
+      flex-flow: row wrap;
+      box-sizing: border-box;
+      align-items: flex-start;
+      justify-content: flex-start;
+
+      h2 {
+        flex: 0 0 100%;
+      }
+
+      div {
+        flex: 0 0 50%;
+        padding: 2%;
+        box-sizing: border-box;
+      }
+    }
+  }
+}
 </style>
 
 <script>

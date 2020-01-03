@@ -20,6 +20,13 @@
     margin: 0;
   }
 }
+
+@include desktop-up {
+  .header {
+    height: 100%;
+    border-radius: 0px;
+  }
+}
 </style>
 
 <script>

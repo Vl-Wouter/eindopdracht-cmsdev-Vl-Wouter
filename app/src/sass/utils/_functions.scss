@@ -27,3 +27,8 @@ $color-interval: 10%;
       app-color("background")
     );
 }
+
+// Breakpoint functions
+@function breakpoint($key) {
+  @return map-get($breakpoints, $key);
+}
