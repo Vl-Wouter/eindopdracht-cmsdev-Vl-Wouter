@@ -20,19 +20,19 @@ class User implements UserInterface
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"api", "login"})
+     * @Groups({"api", "login", "settings"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Groups({"api", "login"})
+     * @Groups({"api", "login", "settings"})
      */
     private $username;
 
     /**
      * @ORM\Column(type="json")
-     * @Groups({"api", "login"})
+     * @Groups({"api", "login", "settings"})
      */
     private $roles = [];
 
@@ -47,32 +47,32 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\Email
-     * @Groups("api")
+     * @Groups({"api", "settings"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"api", "employee", "login"})
+     * @Groups({"api", "employee", "login", "settings"})
      */
     private $first_name;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"api", "employee", "login"})
+     * @Groups({"api", "employee", "login", "settings"})
      */
     private $last_name;
 
     /**
      * @ORM\Column(type="float")
-     * @Groups({"api", "login"})
+     * @Groups({"api", "login", "settings"})
      *
      */
     private $Cost;
 
     /**
      * @ORM\Column(type="float")
-     * @Groups({"api", "login"})
+     * @Groups({"api", "login", "settings"})
      */
     private $transport;
 

@@ -37,3 +37,8 @@ Vue.filter("time", value => {
       : datetime.getMinutes()
   }`;
 });
+
+Vue.filter("currency", value => {
+  if (!value) return "";
+  return "€ " + value.toFixed(2);
+});

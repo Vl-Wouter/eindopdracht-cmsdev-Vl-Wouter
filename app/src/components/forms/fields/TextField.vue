@@ -7,6 +7,8 @@
       :name="name"
       :id="name"
       :placeholder="labelText"
+      :step="step"
+      :value="value"
     />
   </section>
 </template>
@@ -23,7 +25,9 @@ export default {
     labelText: String,
     name: String,
     type: String,
-    required: Boolean
+    required: Boolean,
+    value: [String, Number],
+    step: String
   },
 
   methods: {

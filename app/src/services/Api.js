@@ -25,4 +25,23 @@ export default class Api {
     });
     return updatedTask;
   };
+
+  static fetchUserDetails = async (id, token) => {
+    const user = await axios.get(`${this.url}/user/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    return user;
+  };
+
+  static updateUser = async (id, data, token) => {
+    const updatedUser = await axios.put(`${this.url}/user/${id}`, data, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    });
+    return updatedUser;
+  };
 }
