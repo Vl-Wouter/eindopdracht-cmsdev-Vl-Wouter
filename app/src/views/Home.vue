@@ -5,12 +5,10 @@
         <h2>Overzicht</h2>
         <p>Laatste 7 dagen</p>
         <section class="overview__details">
-          <p>{{ overview.cost }} EUR</p>
+          <p>{{ overview.cost | currency }}</p>
           <p>{{ overview.time }} uur</p>
         </section>
       </app-header>
-      <!-- <img alt="Vue logo" src="../assets/Arte-tech.svg" />
-      <HelloWorld msg="Welcome to Your Vue.js App" /> -->
       <section v-if="tasks" class="tasks">
         <h2>Recente taken</h2>
         <div v-for="task in tasks" :key="task.id">
@@ -69,6 +67,9 @@ export default {
     overview() {
       return this.$store.getters.overview;
     }
+  },
+  mounted() {
+    this.$store.dispatch("updateTasks");
   }
 };
 </script>

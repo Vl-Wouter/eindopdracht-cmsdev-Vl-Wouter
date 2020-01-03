@@ -43,23 +43,6 @@
 <script>
 export default {
   name: "taskCard",
-  // props: {
-  //   name: Object,
-  //   date: String
-  // },
-  // filters: {
-  //   relative(input) {
-  //     const rtf = new Intl.RelativeTimeFormat("nl", { numeric: "auto" });
-  //     const dateDiff = Math.floor(
-  //       (new Date(input).getTime() - new Date().getTime()) / (1000 * 3600 * 24)
-  //     );
-  //     console.log(dateDiff);
-  //     return rtf.format(dateDiff, "day");
-  //   },
-  //   fullName(input) {
-  //     return input.first_name + " " + input.last_name;
-  //   }
-  // }
   filters: {
     fullName(input) {
       return `${input.first_name} ${input.last_name}`;

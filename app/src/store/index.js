@@ -92,9 +92,32 @@ const store = new Vuex.Store({
           }
         }
       );
+      data.timestamp = new Date();
       commit("setToken", user.token);
       commit("setUserId", user.user);
       commit("setTasks", data);
+    },
+    async updateTasks({ state, commit }) {
+      const { timestamp } = state.tasks;
+      const now = new Date();
+
+      const difference = (now - timestamp) / 1000 / 60;
+
+      if (difference < 5) {
+        console.log("no need to update tasks");
+        return null;
+      } else {
+        const { data } = await axios.get(
+          `http://localhost:8000/api/tasks/${state.userId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${state.userToken}`
+            }
+          }
+        );
+        data.timestamp = new Date();
+        commit("setTasks", data);
+      }
     }
   }
 });

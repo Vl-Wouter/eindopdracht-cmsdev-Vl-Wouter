@@ -7,6 +7,9 @@
       :name="name"
       :id="name"
       :placeholder="labelText"
+      {{
+      options
+      }}
     />
   </section>
 </template>
@@ -23,7 +26,8 @@ export default {
     labelText: String,
     name: String,
     type: String,
-    required: Boolean
+    required: Boolean,
+    value: [String, Number]
   },
 
   methods: {
