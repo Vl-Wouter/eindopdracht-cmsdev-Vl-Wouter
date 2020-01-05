@@ -4,7 +4,7 @@
   padding: 0 32px;
   text-align: center;
   background: #fff;
-  height: calc(100vh - 64px);
+  min-height: calc(100vh - 64px);
 
   &__client {
     text-align: left;
