@@ -5,6 +5,12 @@
 }
 
 form {
+  .-horizontal {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
+
   .form__group {
     display: flex;
     width: 100%;

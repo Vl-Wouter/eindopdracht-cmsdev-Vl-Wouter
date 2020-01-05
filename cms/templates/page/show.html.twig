@@ -54,9 +54,17 @@
                     </tbody>
                 </table>
             </main>
+            <h2>Opmerkingen</h2>
+            <form action="{{ path("page_add_remark", {period: period.id}) }}" class="form -horziontal">
+                <div class="form__group">
+                    <textarea name="remark" id="remark" cols="30" rows="1"></textarea>
+                </div>
+                <div class="form__group">
+                    <button class="btn -primary">Opmerking toevoegen</button>
+                </div>
+            </form>
             {% if period.remarks and period.remarks | length > 0 %}
             <section class="period__remarks">
-                <h2>Opmerkingen</h2>
                 <section class="remarks">
                     {% for remark in period.remarks %}
                         <section class="remark">
@@ -72,6 +80,7 @@
                     <p class="text-light">Geen opmerkingen</p>
                 </section>
             {% endif %}
+
         </section>
 {#        <section class="col-4 actions">#}
 {#            <main class="actions__card">#}

@@ -28,11 +28,6 @@ class TaskController extends AbstractController
         $periods = $this->getDoctrine()->getRepository(Period::class)->findAll();
         $alert = null;
         if(!$periods) {
-//            $alert = [
-//                "type" => "warning",
-//                "message" => "Maak een periode aan voordat je een taak toevoegd",
-//                "icon" => "ant-design:warning-fill"
-//            ];
 
             $alert = [
                 "type" => "error",
